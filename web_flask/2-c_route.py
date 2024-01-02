@@ -1,54 +1,33 @@
 #!/usr/bin/python3
-<<<<<<< HEAD
-"""the `2-c_route` module
-starts a flask web application listening on `0.0.0.0:5000`
-"""
-from flask import Flask, escape
-
-app = Flask(__name__)
-app.url_map.strict_slashes = False
-
-
-@app.route("/")
-def index():
-    """returns `Hello HBNB!` message"""
-    return "Hello HBNB!"
-
-
-@app.route("/hbnb", strict_slashes=False)
-def hbnb():
-    """returns `HBNB` message"""
-    return "HBNB"
-
-
-@app.route("/c/<text>", strict_slashes=False)
-def c(text):
-    """returns `c` + `text`"""
-    text = text.replace("_", " ")
-    return "C %s" % escape(text)
-
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
-=======
-"""
-starts a Flask web application
-"""
+""" script that starts a Flask web application:
+    Your web application must be listening on 0.0.0.0, port 5000
+    Routes: 1- /: display “Hello HBNB!”
+            2- /hbnb: display “HBNB”
+            3- /c/<text>: display “C ” followed by the value of the text
+                variable (replace underscore _ symbols with a space )
+    You must use the option strict_slashes=False in your route definition """
 from flask import Flask
 app = Flask(__name__)
+
+
 @app.route('/', strict_slashes=False)
-def index():
-    """returns Hello HBNB!"""
-    return 'Hello HBNB!'
+def hello_hbnb():
+    """ hello_hbnb method """
+    return ('Hello HBNB!')
+
+
 @app.route('/hbnb', strict_slashes=False)
-def hbnb():
-    """returns HBNB"""
-    return 'HBNB'
+def only_hbnb():
+    """ only_hbnb method """
+    return ('HBNB')
+
+
 @app.route('/c/<text>', strict_slashes=False)
-def cisfun(text):
-    """display “C ” followed by the value of the text variable"""
-    return 'C ' + text.replace('_', ' ')
+def only_c(text):
+    """ only_c method: route to return C followed by text variable, replaces _
+        with spaces """
+    text = text.replace('_', ' ')
+    return ('C' + ' ' + text)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port='5000')
->>>>>>> 212529db4b955a72d996660137790c2497399ff5
+    app.run(host='0.0.0.0', port=5000)
